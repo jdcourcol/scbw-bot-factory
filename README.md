@@ -1,9 +1,9 @@
 # scbw-bot-factory
-a set of recipes to build an development environment for starcraft broodwar AI bots.
+a set of recipes to build a development environment for starcraft broodwar AI bots.
 
-## requirements
+## requirements for veewee and virtualbox.
 
-vagrant 1.4.3 virtualbox 4.3.10 ruby 1,9,1
+vagrant 1.4.3 virtualbox 4.3.10 ruby 1.9.1
 ```
 sudo apt-get install vagrant virtualbox ruby-full
 ```
@@ -19,3 +19,19 @@ knife-windows 0.8.2 winrm 0.2.2 log4r 1.1.10
 ```
 sudo gem install em-winrm log4r knife-windows --no-rdoc --no-ri
 ```
+
+## vbox creation
+
+initial box creation
+```
+mkdir -p ${HOME}/WORKDIR
+veewee vbox define 'win7sp1ult64' 'windows-7sp1-ultimate-amd64' --workdir=${HOME}/WORKDIR
+```
+
+
+box instantiation
+```
+veewee vbox build 'win7sp1ult64'  --workdir=${HOME}/WORKDIR
+```
+
+
