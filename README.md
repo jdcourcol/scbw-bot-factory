@@ -9,7 +9,7 @@ sudo apt-get install vagrant virtualbox ruby-full
 ```
 veewee 0.4.5.1
 ```
-sudo gem install veewee --no-rdoc --no-ri --user-install
+sudo gem install veewee --no-rdoc  --user-install
 
 
 to be checked:
@@ -20,7 +20,7 @@ sudo apt-get install build-essential g++ rdesktop
 ```
 knife-windows 0.8.2 winrm 0.2.2 log4r 1.1.10
 ```
-sudo gem install em-winrm log4r knife-windows --no-rdoc --no-ri
+sudo gem install em-winrm log4r knife-windows --no-rdoc
 ```
 
 ## vbox creation
