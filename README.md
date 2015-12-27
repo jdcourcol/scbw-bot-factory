@@ -26,15 +26,27 @@ sudo gem install em-winrm log4r knife-windows --no-rdoc
 ## vbox creation
 
 initial box creation
+set WORKDIR to a path.
+
 ```
-mkdir -p ${HOME}/WORKDIR
-veewee vbox define 'win7sp1ult64' 'windows-7sp1-ultimate-amd64' --workdir=${HOME}/WORKDIR
+mkdir -p ${WORKDIR}/vm
+vboxmanage setproperty machinefolder ${WORKDIR}/vm
 ```
 
+```
+mkdir -p ${WORKDIR}/iso
+```
+copy win7, visual studio, and vboxguestadditions in iso/
+
+```
+mkdir -p ${WORKDIR}/definitions
+VMNAME="anyname"
+ln -s path_to_win7sp1ult64_definition_dir ${WORKDIR}/${VMNAME}
+```
 
 box instantiation
 ```
-veewee vbox build 'win7sp1ult64'  --workdir=${HOME}/WORKDIR
+veewee vbox build ${VMNAME}  --workdir=${WORKDIR}
 ```
 
 
