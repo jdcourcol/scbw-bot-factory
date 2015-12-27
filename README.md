@@ -12,7 +12,7 @@ veewee 0.4.5.1
 sudo gem install veewee --no-rdoc --user-install
 
 
-to be checked:
+the items below need to be checked:
 ```
 rdesktop 1.7.1 gcc 4.8.2
 ```
@@ -25,26 +25,28 @@ sudo gem install em-winrm log4r knife-windows --no-rdoc
 
 ## vbox creation
 
-initial box creation
 set WORKDIR to a path.
+set VMNAME to a particular VM name
+
+### VM vdi storage
 
 ```
 mkdir -p ${WORKDIR}/vm
 vboxmanage setproperty machinefolder ${WORKDIR}/vm
 ```
-
+### iso storage
 ```
 mkdir -p ${WORKDIR}/iso
 ```
-copy win7, visual studio, and vboxguestadditions in iso/
+copy win7, visual studio, and vbox guest additions in iso/
 
+### definitions storage
 ```
 mkdir -p ${WORKDIR}/definitions
-VMNAME="anyname"
 ln -s path_to_win7sp1ult64_definition_dir ${WORKDIR}/${VMNAME}
 ```
 
-box instantiation
+### box instantiation
 ```
 veewee vbox build ${VMNAME}  --workdir=${WORKDIR}
 ```
