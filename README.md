@@ -9,17 +9,25 @@ sudo apt-get install vagrant virtualbox ruby-full
 ```
 veewee 0.4.5.1
 ```
-sudo gem install veewee --no-rdoc --user-install
+sudo gem install --user-install veewee --no-rdoc
 ```
+
+winrm 0.2.2 (to launch windows boxes)
+```
+sudo gem install --user-install em-winrm  --no-rdoc
+```
+
+veewee requires java to be installed to run the floppy files
+
 
 the items below need to be checked:
 rdesktop 1.7.1 gcc 4.8.2
 ```
 sudo apt-get install build-essential g++ rdesktop
 ```
-knife-windows 0.8.2 winrm 0.2.2 log4r 1.1.10
+
 ```
-sudo gem install em-winrm log4r knife-windows --no-rdoc
+log4r knife-windows
 ```
 
 ## vbox creation
