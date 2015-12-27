@@ -10,10 +10,9 @@ sudo apt-get install vagrant virtualbox ruby-full
 veewee 0.4.5.1
 ```
 sudo gem install veewee --no-rdoc --user-install
-
+```
 
 the items below need to be checked:
-```
 rdesktop 1.7.1 gcc 4.8.2
 ```
 sudo apt-get install build-essential g++ rdesktop
