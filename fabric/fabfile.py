@@ -8,7 +8,14 @@ def w7_64():
     env.hosts = ['localhost:59857']
 
 
+def _detach_drive():
+    detach_drive = "vboxmanage storageattach '%s' --storagectl 'IDE Controller'\
+    --port 0 --device 0 --type dvddrive --medium 'emptydrive'" %(env.vm_name)
+    local(detach_drive)
+
+
 def _attach_iso(path_iso):
+    _detach_drive()
     attach_iso = "VBoxManage storageattach '%s' --storagectl 'IDE Controller' \
     --port 0 --device 0 --type dvddrive \
     --medium '%s'" % (env.vm_name, path_iso)
