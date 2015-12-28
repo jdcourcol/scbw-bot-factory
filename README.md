@@ -65,3 +65,10 @@ veewee vbox build ${VMNAME}  --workdir=${WORKDIR}
 ```
 ssh -p 59857 vagrant@localhost
 ```
+
+## bot development environment installation
+
+this requires to have python-virtualenv, python-dev (Fabric requires it)
+```
+sudo apt-get install python-virtualenv python-dev
+```
