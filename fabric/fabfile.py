@@ -8,7 +8,7 @@ def w7_64():
     env.hosts = ['localhost:59857']
 
 
-def _attach_iso(iso_path):
+def _attach_iso(path_iso):
     attach_iso = "VBoxManage storageattach '%s' --storagectl 'IDE Controller' \
     --port 0 --device 0 --type dvddrive \
     --medium '%s'" % (env.vm_name, path_iso)
