@@ -48,8 +48,9 @@ def install_starcraft():
     ''' run the starcraft installation '''
     # takes around 60s
     # may fail if never logged in as vagrant to the remote with cygwin console.
-    put(env.starcraft_tar, "/home/vagrant/", mode=0755)
-    run('./SETUP.EXE ', timeout=10, quiet=True)
+    put(env.starcraft_tar, "/home/vagrant/starcraft.tar.gz", mode=0755)
+    run('tar xcvf /home/vagrant/starcraft.tar.gz')
+    run('/home/vagrant/starcraft/SETUP.EXE ', timeout=10, quiet=True)
 
 
 def build_example_bot():
