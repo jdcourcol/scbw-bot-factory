@@ -69,5 +69,5 @@ pip install fabric
 
 execute the fabric file
 ```
-fab w7_64 deploy -f /path/to/fabric/fabfile.py -p vagrant
+fab w7_64 deploy -c /path/to/fabric/config/config.rc -f /path/to/fabric/fabfile.py -p vagrant
 ```
