@@ -29,7 +29,7 @@ def install_bwapi():
     with cd('/home/vagrant/'):
         put('', '/home/vagrant', mode=0755)
         # run('icacls %s /grant Administrator:F' % f)
-        put(env.chaoslauncher_reg
+        put(env.chaoslauncher_reg,
             '/home/vagrant/chaoslauncher.reg',
             mode=0755)
         # cf superuser 664756
