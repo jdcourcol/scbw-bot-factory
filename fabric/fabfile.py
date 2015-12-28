@@ -60,8 +60,7 @@ def install_starcraft():
 def build_example_bot():
     ''' build the example bot provided with BWAPI '''
     bot_project = "/home/vagrant/BWAPI/ExampleAIModule/ExampleAIModule.vcxproj"
-    msbuild = "\"/cygdrive/c/Program Files\
-    (x86)/MSBuild/12.0/Bin/MSBuild.exe\""
+    msbuild = "\"/cygdrive/c/Program Files (x86)/MSBuild/12.0/Bin/MSBuild.exe\""
     run('%s `cygpath -aw %s` /p:Configuration=Release\
     /p:Platform=Win32' % (msbuild, bot_project))
 
