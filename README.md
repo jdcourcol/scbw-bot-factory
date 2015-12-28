@@ -16,22 +16,9 @@ winrm 0.2.2 (to launch windows boxes)
 ```
 sudo gem install --user-install em-winrm  --no-rdoc
 ```
-note when installing with user-install, you need to add ~/.gem/..... /bin to your path.
+note: when installing with user-install, you need to add ~/.gem/..... /bin to your path.
 
 veewee requires java to be installed to run the floppy files
-
-
-
-
-the items below need to be checked:
-rdesktop 1.7.1 gcc 4.8.2
-```
-sudo apt-get install build-essential g++ rdesktop
-```
-
-```
-log4r knife-windows
-```
 
 ## vbox creation
 
@@ -78,7 +65,7 @@ create a virtualenv and install fabric in it:
 virtualenv venv
 source venv/bin/activate
 pip install fabric
-``
+```
 
 execute the fabric file
 ```
