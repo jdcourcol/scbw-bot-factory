@@ -61,4 +61,7 @@ ln -s path_to_win7sp1ult64_definition_dir ${WORKDIR}/${VMNAME}
 veewee vbox build ${VMNAME}  --workdir=${WORKDIR}
 ```
 
-
+### login
+```
+ssh -p 59857 vagrant@localhost
+```
