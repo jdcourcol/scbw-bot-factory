@@ -34,7 +34,7 @@ def install_bwapi():
     # takes around 70s
     # wget https://github.com/bwapi/bwapi/releases/download/v4.1.0-Beta/BWAPI_410B_2_Setup.exe
     with cd('/home/vagrant/'):
-        put('', '/home/vagrant', mode=0755)
+        put(env.chaoslauncher_reg, '/home/vagrant/chaoslauncher.reg', mode=0755)
         # run('icacls %s /grant Administrator:F' % f)
         put(env.chaoslauncher_reg,
             '/home/vagrant/chaoslauncher.reg',
