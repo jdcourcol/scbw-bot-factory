@@ -72,3 +72,15 @@ this requires to have python-virtualenv, python-dev (Fabric requires it)
 ```
 sudo apt-get install python-virtualenv python-dev
 ```
+
+create a virtualenv and install fabric in it:
+```
+virtualenv venv
+source venv/bin/activate
+pip install fabric
+``
+
+execute the fabric file
+```
+fab w7_64 deploy -f /path/to/fabric/fabfile.py -p vagrant
+```

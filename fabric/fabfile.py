@@ -1,13 +1,6 @@
 ''' fabric file to initialize environment for starcraft bots development '''
 from fabric.api import env, run, put, local, cd, get
 
-VM_NAME = ''
-VS_ISO = ''
-
-BWAPI_TAR = ''
-CHAOSLAUNCHER_REG = ''
-SC_TAR = ''
-
 
 def w7_64():
     ''' definition of w7_64 environment '''
@@ -17,13 +10,14 @@ def w7_64():
 
 def _attach_iso(iso_path):
     attach_iso = "VBoxManage storageattach '%s' --storagectl 'IDE Controller' \
-    --port 0 --device 0 --type dvddrive --medium '%s'" % (VM_NAME, iso_path)
+    --port 0 --device 0 --type dvddrive \
+    --medium '%s'" % (env.vm_name, path_iso)
     local(attach_iso)
 
 
 def install_visual_studio():
     ''' install visual studio '''
-    _attach_iso(VS_ISO)
+    _attach_iso(env.visual_studio_iso)
     with cd('/cygdrive/d'):
         run('/cygdrive/d/wdexpress_full.exe /passive /noweb')
 
@@ -35,7 +29,7 @@ def install_bwapi():
     with cd('/home/vagrant/'):
         put('', '/home/vagrant', mode=0755)
         # run('icacls %s /grant Administrator:F' % f)
-        put('chaoslauncher.reg',
+        put(env.chaoslauncher_reg
             '/home/vagrant/chaoslauncher.reg',
             mode=0755)
         # cf superuser 664756
@@ -47,7 +41,7 @@ def install_starcraft():
     ''' run the starcraft installation '''
     # takes around 60s
     # may fail if never logged in as vagrant to the remote with cygwin console.
-    put("starcraft", "/home/vagrant/", mode=0755)
+    put(env.starcraft_tar, "/home/vagrant/", mode=0755)
     run('./SETUP.EXE ', timeout=10, quiet=True)
 
 
