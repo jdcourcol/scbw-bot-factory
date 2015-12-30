@@ -38,9 +38,12 @@ mkdir -p ${WORKDIR}/iso
 copy win7, visual studio, and vbox guest additions in iso/
 
 ### definitions storage
+These definitions come from veewee templates.
+https://github.com/jedi4ever/veewee/tree/master/templates/windows-7-enterprise-amd64
+
 ```
 mkdir -p ${WORKDIR}/definitions
-ln -s path_to_win7sp1ult64_definition_dir ${WORKDIR}/${VMNAME}
+ln -s path_to_win7sp1ent64_definition_dir ${WORKDIR}/${VMNAME}
 ```
 
 ### box instantiation
