@@ -3,8 +3,8 @@
 # I'm not sure how to set that with veewee::session yet
 Veewee::Session.declare({
     :os_type_id => 'Windows7_64',
-    :iso_file => ""
-    :iso_md5 => ""
+    :iso_file => "",
+    :iso_md5 => "",
     :iso_download_timeout => "100000",
 
     :cpu_count => '2',
@@ -17,14 +17,6 @@ Veewee::Session.declare({
       "install-winrm.bat",
       "oracle-cert.cer",
       "install-cygwin-sshd.bat"
-    ],
-
-
-    :boot_wait => "1050", #12 minutes.. should be long enough
-    # this is waiting for the screene where we could put in our product key
-    # this is the command sequence to bybass it and to not try to register once online
-    :boot_cmd_sequence => [
-      '<Esc>','<Esc>'
     ],
 
     :ssh_login_timeout => "10000",

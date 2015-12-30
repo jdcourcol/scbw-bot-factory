@@ -19,7 +19,7 @@
                             <Letter>C</Letter>
                             <Order>1</Order>
                             <PartitionID>1</PartitionID>
-                            <Label>Windows 2008R2</Label>
+                            <Label>Windows 7</Label>
                         </ModifyPartition>
                     </ModifyPartitions>
                     <DiskID>0</DiskID>
@@ -47,7 +47,7 @@
                     <InstallFrom>
                         <MetaData wcm:action="add">
                             <Key>/IMAGE/NAME</Key>
-                            <Value>Windows 7 ULTIMATE</Value>
+                            <Value>Windows 7 ENTERPRISE</Value>
                         </MetaData>
                     </InstallFrom>
                 </OSImage>
