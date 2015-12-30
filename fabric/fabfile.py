@@ -2,11 +2,15 @@
 from fabric.api import env, run, put, local, cd, get
 
 
-def w7_64():
-    ''' definition of w7_64 environment '''
+def vm1():
+    ''' definition of vm1 environment '''
     env.user = 'vagrant'
     env.hosts = ['localhost:59857']
 
+def vm2():
+    ''' definition of vm2 environment '''
+    env.user = 'vagrant'
+    env.hosts = ['localhost:59858']
 
 def _detach_drive():
     detach_drive = "vboxmanage storageattach '%s' --storagectl 'IDE Controller'\
