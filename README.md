@@ -70,7 +70,7 @@ source venv/bin/activate
 pip install fabric
 ```
 
-execute the fabric file
+execute the fabric file on vm1 or vm2 (2 different environments)
 ```
-fab w7_64 deploy -c /path/to/fabric/config/config.rc -f /path/to/fabric/fabfile.py -p vagrant
+fab vm1 deploy -c /path/to/fabric/config/config.rc -f /path/to/fabric/fabfile.py -p vagrant
 ```
