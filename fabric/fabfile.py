@@ -7,10 +7,12 @@ def vm1():
     env.user = 'vagrant'
     env.hosts = ['localhost:59857']
 
+
 def vm2():
     ''' definition of vm2 environment '''
     env.user = 'vagrant'
     env.hosts = ['localhost:59858']
+
 
 def _detach_drive():
     detach_drive = "vboxmanage storageattach '%s' --storagectl 'IDE Controller'\
@@ -67,6 +69,12 @@ def build_example_bot():
     msbuild = "\"/cygdrive/c/Program Files (x86)/MSBuild/12.0/Bin/MSBuild.exe\""
     run('%s `cygpath -aw %s` /p:Configuration=Release\
     /p:Platform=Win32' % (msbuild, bot_project))
+
+
+def install_jdk():
+    ''' silent install java jdk '''
+    put(env.jdk_exe, "/home/vagrant/jdk.exe", mode=0755)
+    run('/home/vagrant/jdk.exe /s')
 
 
 def deploy():
