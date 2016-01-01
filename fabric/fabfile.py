@@ -75,8 +75,19 @@ def install_jdk():
     ''' silent install java jdk '''
     put(env.jdk_exe, "/home/vagrant/jdk.exe", mode=0755)
     run('/home/vagrant/jdk.exe /s')
-    run('setx PATH \"%PATH%;C:\\Program Files\\Java\\' +
-        env.jdk_version + '\\bin\"')
+
+
+def clone_tournament_manager():
+    ''' clone tournament manger '''
+    run('git clone https://github.com/davechurchill/StarcraftAITournamentManager')
+
+
+def build_tournament_manager():
+    ''' build tournament manager '''
+    with cd('/home/vagrant/StarcraftAITournamentManager/src/'):
+        with path("/cygdrive/c/Program\ Files/Java/jdk" + env.jdk_version + "/bin"):
+            run('chmod +x make.bat')
+            run('cmd /c make.bat')
 
 
 def deploy():
