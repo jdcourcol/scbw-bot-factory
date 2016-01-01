@@ -75,6 +75,8 @@ def install_jdk():
     ''' silent install java jdk '''
     put(env.jdk_exe, "/home/vagrant/jdk.exe", mode=0755)
     run('/home/vagrant/jdk.exe /s')
+    run('setx PATH \"%PATH%;C:\\Program Files\\Java\\' +
+        env.jdk_version + '\\bin\"')
 
 
 def deploy():
