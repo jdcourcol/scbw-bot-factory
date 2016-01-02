@@ -1,17 +1,19 @@
 ''' fabric file to initialize environment for starcraft bots development '''
-from fabric.api import env, run, put, local, cd, get
+from fabric.api import env, run, put, local, cd, get, settings, sudo, path
 
 
 def vm1():
     ''' definition of vm1 environment '''
     env.user = 'vagrant'
     env.hosts = ['localhost:59857']
+    env.vm_name = 'vm1'
 
 
 def vm2():
     ''' definition of vm2 environment '''
     env.user = 'vagrant'
     env.hosts = ['localhost:59858']
+    env.vm_name = 'vm2'
 
 
 def _detach_drive():
@@ -32,7 +34,7 @@ def install_visual_studio():
     ''' install visual studio '''
     _attach_iso(env.visual_studio_iso)
     with cd('/cygdrive/d'):
-        run('/cygdrive/d/wdexpress_full.exe /passive /noweb')
+        run('/cygdrive/d/wdexpress_full.exe /passive /noweb /ForceRestart')
 
 
 def install_bwapi():
@@ -60,7 +62,8 @@ def install_starcraft():
     # may fail if never logged in as vagrant to the remote with cygwin console.
     put(env.starcraft_tar, "/home/vagrant/starcraft.tar.gz", mode=0755)
     run('tar xzvf /home/vagrant/starcraft.tar.gz')
-    run('/home/vagrant/starcraft/SETUP.EXE ', timeout=10, quiet=True)
+    with settings(warn_only=True):
+        run('/home/vagrant/starcraft/SETUP.EXE', timeout=10, quiet=True)
 
 
 def build_example_bot():
@@ -79,15 +82,24 @@ def install_jdk():
 
 def clone_tournament_manager():
     ''' clone tournament manger '''
-    run('git clone https://github.com/davechurchill/StarcraftAITournamentManager')
+    default = 'https://github.com/davechurchill/StarcraftAITournamentManager'
+    repo = env.TM_git
+    if not repo:
+        repo = default
+    run('git clone %s' % repo)
 
 
 def build_tournament_manager():
     ''' build tournament manager '''
     with cd('/home/vagrant/StarcraftAITournamentManager/src/'):
-        with path("/cygdrive/c/Program\ Files/Java/jdk" + env.jdk_version + "/bin"):
+        with path("/cygdrive/c/Program\ Files/Java/jdk" + env.jdk_version + "/bin",
+                  behavior='append'):
             run('chmod +x make.bat')
             run('cmd /c make.bat')
+            get('/home/vagrant/StarcraftAITournamentManager/server/server.jar',
+                env.server_jar)
+            get('/home/vagrant/StarcraftAITournamentManager/client/client.jar',
+                env.client_jar)
 
 
 def deploy():
