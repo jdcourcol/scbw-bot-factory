@@ -1,5 +1,7 @@
 ''' fabric file to initialize environment for starcraft bots development '''
-from fabric.api import env, run, put, local, cd, get, settings, sudo, path
+import tarfile
+import os
+from fabric.api import env, run, put, local, cd, get, settings, sudo, path, lcd
 
 
 def vm1():
@@ -100,6 +102,44 @@ def build_tournament_manager():
                 env.server_jar)
             get('/home/vagrant/StarcraftAITournamentManager/client/client.jar',
                 env.client_jar)
+
+
+def _local_clone_TM():
+    with lcd(env.clone_TM):
+        if not os.path.exists(os.path.join(env.clone_TM, 'StarcraftAITournamentManager')):
+            local('git clone https://github.com/davechurchill/StarcraftAITournamentManager')
+
+
+def _add_to_archive(file_path, base_path, tar_file):
+    archive_name = os.path.relpath(file_path, base_path)
+    tar_file.add(file_path, archive_name)
+
+
+def create_server_bundle():
+    ''' create TM bundle for server '''
+    _local_clone_TM()
+    tf_server = tarfile.open(env.server_bundle, mode='w')
+    path_server = os.path.join(env.clone_TM,
+                               'StarcraftAITournamentManager',
+                               'server')
+    for f in['html', 'run_server.bat']:
+        _add_to_archive(os.path.join(path_server, f), path_server, tf_server)
+
+    tf_server.add(env.server_jar, 'server.jar')
+
+
+def create_client_bundle():
+    ''' create TM bundle for client '''
+    _local_clone_TM()
+    tf_client = tarfile.open(env.client_bundle, mode='w')
+    path_client = os.path.join(env.clone_TM,
+                               'StarcraftAITournamentManager',
+                               'client')
+
+    for f in ['BWAPI.ini', 'run_client.bat']:
+        _add_to_archive(os.path.join(path_client, f), path_client, tf_client)
+
+    tf_client.add(env.client_jar, 'client.jar')
 
 
 def deploy():
